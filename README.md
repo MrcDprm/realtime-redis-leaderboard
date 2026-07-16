@@ -145,8 +145,11 @@ Electron readiness:
 ```bash
 cd realtime-redis-leaderboard
 cp .env.example .env
+# Edit .env — replace every CHANGE_ME (Postgres user/password, JWT_SECRET, DATABASE_URL)
 docker-compose up -d --build
 ```
+
+`DATABASE_URL` must use the same user/password you set in `POSTGRES_USER` / `POSTGRES_PASSWORD`.
 
 Services:
 
@@ -197,11 +200,12 @@ npm run dev
 # → http://localhost:5173 (Vite proxies /api and /socket.io → :5000)
 ```
 
-Update `.env` for local API:
+Update `.env` for local API (use your own credentials, not placeholders):
 
 ```
-DATABASE_URL=postgresql://leaderboard:leaderboard_secret@localhost:5432/leaderboard_db?schema=public
+DATABASE_URL=postgresql://YOUR_USER:YOUR_PASSWORD@localhost:5432/leaderboard_db?schema=public
 REDIS_URL=redis://localhost:6379
+JWT_SECRET=your-long-random-secret
 CORS_ORIGIN=http://localhost:5173
 ```
 
@@ -253,6 +257,7 @@ CORS_ORIGIN=http://localhost:5173
 - Passwords hashed with **bcrypt** (cost 12)  
 - JWT Bearer auth on protected routes  
 - Redis rate limiting on score writes (anti-bot / anti-spam)  
-- Change `JWT_SECRET` and DB credentials in `.env` before any public deploy  
+- `.env.example` only contains `CHANGE_ME` placeholders — never real secrets
+- Put real credentials only in local `.env` (gitignored) before any deploy  
 
 ---
