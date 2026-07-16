@@ -256,7 +256,3 @@ CORS_ORIGIN=http://localhost:5173
 - Change `JWT_SECRET` and DB credentials in `.env` before any public deploy  
 
 ---
-
-## License
-
-MIT — built as an open portfolio demonstration of real-time systems design.
