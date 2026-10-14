@@ -1,6 +1,6 @@
 # NEXUS RANK — Real-Time Leaderboard System
 
-A production-ready full-stack leaderboard platform demonstrating **PostgreSQL for durable history**, **Redis for in-memory rankings & anti-cheat**, and **Socket.io for sub-second UI updates**. Built as a portfolio-grade Docker Compose stack with a high-end dark metallic UI.
+A full-stack leaderboard for the [roadmap.sh Real-time Leaderboard](https://roadmap.sh/projects/realtime-leaderboard-system) project. It uses **PostgreSQL for durable score history**, **Redis sorted sets for live rankings and rate limiting**, and **Socket.io for live updates**. It runs locally with Docker Compose; it is not deployed.
 
 ![Stack](https://img.shields.io/badge/Node.js-20-green) ![Stack](https://img.shields.io/badge/React-Vite-61dafb) ![Stack](https://img.shields.io/badge/Redis-7-DC382D) ![Stack](https://img.shields.io/badge/PostgreSQL-15-336791) ![Stack](https://img.shields.io/badge/Docker-Compose-2496ED)
 
@@ -35,7 +35,7 @@ The leaderboard **read path never touches Postgres**. Usernames live in a Redis 
 
 ---
 
-## Redis Architecture (Senior Patterns)
+## Redis Architecture
 
 ### 1. Redis-only leaderboard lookup
 
@@ -259,6 +259,14 @@ CORS_ORIGIN=http://localhost:5173
 - Redis rate limiting on score writes (anti-bot / anti-spam)  
 - `.env.example` only contains `CHANGE_ME` placeholders — never real secrets
 - Put real credentials only in local `.env` (gitignored) before any deploy  
+
+### Known limitations
+
+This is a local learning project, not a production service:
+
+- **Scores come from the client.** `POST /api/scores` accepts the score in the request body, so a logged-in user can submit any number. A real game would compute the score on the server.
+- **The JWT is kept in `localStorage`.** Any script injected into the page could read it; an HttpOnly cookie would be safer.
+- **Not deployed.** It is meant to be run with Docker Compose on your own machine.
 
 ---
 https://roadmap.sh/projects/realtime-leaderboard-system
