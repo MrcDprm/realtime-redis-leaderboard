@@ -6,7 +6,7 @@ const games = [
   {
     name: 'Neon Drift',
     description: 'High-speed neon racing through cyberpunk megacities. Drift corners, chain combos, and climb the global board.',
-    coverImage: 'https://images.unsplash.com/photo-1550745165-9bc8b6ca8124?w=800&q=80',
+    coverImage: 'https://images.unsplash.com/photo-1519608487953-e999c86e7455?w=800&q=80',
   },
   {
     name: 'Orbital Siege',
